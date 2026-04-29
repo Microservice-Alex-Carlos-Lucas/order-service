@@ -1,0 +1,41 @@
+server:
+  port: 8080
+
+spring:
+
+  application:
+    name: order
+
+  mvc:
+    problemdetails:
+      enabled: true
+
+  datasource:
+    url: jdbc:postgresql://${DATABASE_HOST}:${DATABASE_PORT}/${DATABASE_DB}
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+
+  flyway:
+    baseline-on-migrate: true
+    schemas: orders
+
+  jpa:
+    properties:
+      hibernate:
+        default_schema: orders
+
+  cloud:
+    openfeign:
+      client:
+        config:
+          product-service:
+            url: ${PRODUCT_SERVICE_URL:http://product:8080}
+          exchange-service:
+            url: ${EXCHANGE_SERVICE_URL:http://exchange:8000}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus

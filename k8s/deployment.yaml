@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: order
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: order
+  template:
+    metadata:
+      labels:
+        app: order
+    spec:
+      containers:
+        - name: order
+          image: cheqr/order:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+          env:
+            - name: DATABASE_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: order-configmap
+                  key: DATABASE_HOST
+            - name: DATABASE_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: order-configmap
+                  key: DATABASE_PORT
+            - name: DATABASE_DB
+              valueFrom:
+                configMapKeyRef:
+                  name: order-configmap
+                  key: DATABASE_DB
+            - name: DATABASE_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: order-secrets
+                  key: DATABASE_USERNAME
+            - name: DATABASE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: order-secrets
+                  key: DATABASE_PASSWORD
+            - name: PRODUCT_SERVICE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: order-configmap
+                  key: PRODUCT_SERVICE_URL
+            - name: EXCHANGE_SERVICE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: order-configmap
+                  key: EXCHANGE_SERVICE_URL
