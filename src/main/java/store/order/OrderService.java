@@ -1,6 +1,9 @@
 package store.order;
 
 import feign.FeignException;
+import io.micrometer.core.instrument.Counter;
+import io.micrometer.core.instrument.MeterRegistry;
+import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -30,6 +33,16 @@ public class OrderService {
     private final OrderRepository orderRepository;
     private final ProductClient productClient;
     private final ExchangeClient exchangeClient;
+    private final MeterRegistry meterRegistry;
+
+    private Counter ordersCreated;
+
+    @PostConstruct
+    void initMetrics() {
+        ordersCreated = Counter.builder("orders.created")
+                .description("Total number of orders created")
+                .register(meterRegistry);
+    }
 
     @Transactional
     public OrderCreatedResponse create(OrderRequest request, String idAccount) {
@@ -51,6 +64,7 @@ public class OrderService {
         }
 
         Order saved = orderRepository.save(order);
+        ordersCreated.increment();
         return toCreated(saved);
     }
 
