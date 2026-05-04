@@ -63,6 +63,13 @@ public class OrderService {
     }
 
     @Transactional(readOnly = true)
+    public List<OrderSummaryResponse> listAll() {
+        return orderRepository.findAll().stream()
+                .map(order -> new OrderSummaryResponse(order.getId(), order.getDate(), totalOf(order)))
+                .toList();
+    }
+
+    @Transactional(readOnly = true)
     public OrderDetailResponse get(UUID id, String currency, String idAccount) {
         UUID accountId = parseAccount(idAccount);
         Order order = orderRepository.findByIdAndIdAccount(id, accountId)

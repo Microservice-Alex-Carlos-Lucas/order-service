@@ -31,24 +31,39 @@ public class OrderController {
     @ResponseStatus(HttpStatus.CREATED)
     public OrderCreatedResponse create(
             @RequestHeader("id-account") String idAccount,
+            @RequestHeader(value = "id-role", required = false) String idRole,
             @Valid @RequestBody OrderRequest request
     ) {
+        Role.parse(idRole);
         return service.create(request, idAccount);
     }
 
     @GetMapping
     public List<OrderSummaryResponse> list(
-            @RequestHeader("id-account") String idAccount
+            @RequestHeader("id-account") String idAccount,
+            @RequestHeader(value = "id-role", required = false) String idRole
     ) {
+        Role.parse(idRole);
         return service.list(idAccount);
+    }
+
+    @GetMapping("/all")
+    public List<OrderSummaryResponse> listAll(
+            @RequestHeader("id-account") String idAccount,
+            @RequestHeader(value = "id-role", required = false) String idRole
+    ) {
+        Role.parse(idRole).requireAdmin();
+        return service.listAll();
     }
 
     @GetMapping("/{id}")
     public OrderDetailResponse get(
             @RequestHeader("id-account") String idAccount,
+            @RequestHeader(value = "id-role", required = false) String idRole,
             @PathVariable UUID id,
             @RequestParam(required = false) String currency
     ) {
+        Role.parse(idRole);
         return service.get(id, currency, idAccount);
     }
 }
