@@ -41,3 +41,24 @@ docker run -p 8080:8080 --env-file .env cheqr/order
 |---------|------------|---------|
 | product-service | `http://product:8080` | `PRODUCT_SERVICE_URL` |
 | exchange-service | `http://exchange:8000` | `EXCHANGE_SERVICE_URL` |
+
+## Documentation (MkDocs)
+
+Individual student documentation lives in [`docs/`](./docs/) and is built with
+[MkDocs Material](https://squidfunk.github.io/mkdocs-material/). Includes:
+project overview, architecture, endpoints, **bottlenecks**, presentation/video
+placeholders, and links to every group repository.
+
+### Build locally
+
+```bash
+pip install -r requirements-docs.txt
+mkdocs serve     # http://localhost:8000
+```
+
+### Deploy to GitHub Pages
+
+A push to `main` triggers `.github/workflows/docs.yml` which runs `mkdocs gh-deploy`.
+The site is published at:
+
+> https://microservice-alex-carlos-lucas.github.io/order-service/

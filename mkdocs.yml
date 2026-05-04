@@ -1,0 +1,74 @@
+site_name: Order API — Lucas Ikawa
+site_description: Documentação individual do microsserviço Order — Insper 2026.1
+site_author: Lucas Ikawa
+repo_url: https://github.com/Microservice-Alex-Carlos-Lucas/order-service
+repo_name: Microservice-Alex-Carlos-Lucas/order-service
+
+theme:
+  name: material
+  language: pt
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Modo escuro
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Modo claro
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - navigation.tracking
+    - content.code.copy
+    - content.code.annotate
+    - content.tooltips
+  icon:
+    repo: fontawesome/brands/github
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - footnotes
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+plugins:
+  - search
+
+nav:
+  - Home: index.md
+  - Repositórios: repositorios.md
+  - Exercícios:
+      - Visão geral: exercicios/index.md
+  - Projeto:
+      - Visão geral: projeto/index.md
+      - Arquitetura: projeto/arquitetura.md
+      - Apresentação: projeto/apresentacao.md
+  - Order API (individual):
+      - Visão geral: individual/index.md
+      - Endpoints: individual/endpoints.md
+      - Bottlenecks: individual/bottlenecks.md
+      - Testes: individual/testes.md

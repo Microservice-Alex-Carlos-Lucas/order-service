@@ -9,3 +9,6 @@ target/
 .env.*
 HELP.md
 .DS_Store
+site/
+__pycache__/
+.venv/
