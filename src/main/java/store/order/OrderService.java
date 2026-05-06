@@ -9,7 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
-import store.order.client.ExchangeClient;
+import store.order.client.ExchangeRateService;
 import store.order.client.ExchangeResponse;
 import store.order.client.ProductClient;
 import store.order.client.ProductResponse;
@@ -32,7 +32,7 @@ public class OrderService {
 
     private final OrderRepository orderRepository;
     private final ProductClient productClient;
-    private final ExchangeClient exchangeClient;
+    private final ExchangeRateService exchangeRateService;
     private final MeterRegistry meterRegistry;
 
     private Counter ordersCreated;
@@ -107,7 +107,7 @@ public class OrderService {
 
     private ExchangeResponse fetchRate(String currency, String idAccount) {
         try {
-            return exchangeClient.getRate(DEFAULT_CURRENCY, currency, idAccount);
+            return exchangeRateService.getRate(DEFAULT_CURRENCY, currency, idAccount);
         } catch (FeignException e) {
             throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "Currency not supported: " + currency);
         }

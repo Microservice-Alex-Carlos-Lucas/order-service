@@ -34,8 +34,19 @@ spring:
           exchange-service:
             url: ${EXCHANGE_SERVICE_URL:http://exchange:8000}
 
+  data:
+    redis:
+      host: ${REDIS_HOST:redis}
+      port: ${REDIS_PORT:6379}
+
+  cache:
+    type: redis
+
 management:
   endpoints:
     web:
       exposure:
-        include: health,info,prometheus
+        include: health,info,prometheus,caches
+  metrics:
+    cache:
+      instrument: true
