@@ -3,8 +3,10 @@ kind: ConfigMap
 metadata:
   name: order-configmap
 data:
-  DATABASE_HOST: postgres
+  DATABASE_HOST: store-db.c5wse42uq3ya.us-east-1.rds.amazonaws.com
   DATABASE_PORT: "5432"
   DATABASE_DB: store
   PRODUCT_SERVICE_URL: http://product:8080
   EXCHANGE_SERVICE_URL: http://exchange:8000
+  REDIS_HOST: redis
+  REDIS_PORT: "6379"
