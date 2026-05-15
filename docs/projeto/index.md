@@ -70,19 +70,19 @@ graph LR
 
 | Tarefa | Peso | Status |
 |--------|------|--------|
-| API Gateway | 5% | ✅ |
-| Auth | 5% | ✅ |
-| Account | 5% | ✅ |
-| Exchange API | 5% | ✅ |
-| Product API | 5% | ✅ |
-| **Order API** | 5% | ✅ |
-| Bottlenecks (≥2/membro) | 20% | 🔄 |
-| AWS / EKS | 15% | ⏳ |
-| CI/CD (Jenkins) | 10% | 🔄 |
-| Load Testing | 15% | ⏳ |
-| Custos / SLA | 10% | ⏳ |
+| API Gateway | 5% | ✅ Concluído |
+| Auth | 5% | ✅ Concluído |
+| Account | 5% | ✅ Concluído |
+| Exchange API | 5% | ✅ Concluído |
+| Product API | 5% | ✅ Concluído |
+| **Order API** | 5% | ✅ Concluído |
+| Bottlenecks (≥2/membro — 6 implementados + medidos) | 20% | ✅ Concluído |
+| AWS / EKS (cluster `store-cluster` em us-east-1) | 15% | ✅ Concluído |
+| CI/CD Jenkins (8 pipelines verdes, Build + Push + Deploy to EKS) | 10% | ✅ Concluído |
+| Load Testing (k6 + HPA validados) | 15% | ✅ Concluído |
+| Custos & PaaS & SLA | 10% | ✅ Concluído |
 
-Status atualizado pelo grupo em [microservices › docs/index.md](https://github.com/Microservice-Alex-Carlos-Lucas/microservices/blob/main/docs/index.md).
+Status mestre mantido no [repositório raiz](https://github.com/Microservice-Alex-Carlos-Lucas/microservices/blob/main/docs/index.md).
 
 ## Documentação completa do grupo
 
