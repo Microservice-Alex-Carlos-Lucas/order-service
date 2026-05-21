@@ -52,7 +52,7 @@ placeholders, and links to every group repository.
 ### Build locally
 
 ```bash
-pip install -r requirements-docs.txt
+pip install -r docs-requirements.txt
 mkdocs serve     # http://localhost:8000
 ```
 
